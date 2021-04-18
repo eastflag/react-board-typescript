@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import axios, {ResponseType} from "axios";
+import axios from "axios";
 import {Col, Row } from 'react-bootstrap';
 import {Board} from "../dto/Board";
+import './BoardList.scss';
 
 const BoardList: React.FC = () => {
   const [boardList, setBoardList] = useState([]);
@@ -21,9 +22,9 @@ const BoardList: React.FC = () => {
     <>
       {
         boardList.map((board: Board)=>
-          <Row>
-            <Col xs={8} sm={8}>{board.title}</Col>
-            <Col xs={4} sm={4}>{board.created}</Col>
+          <Row className="py-2 board">
+            <Col>{board.title}</Col>
+            <Col xs="auto" sm="auto">{board.created}</Col>
           </Row>)
       }
     </>
