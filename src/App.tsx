@@ -6,7 +6,7 @@ import BoardList from "./components/BoardList";
 
 function App() {
   return (
-    <Container className="p-3">
+    <Container className="p-5">
       <BoardList></BoardList>
     </Container>
   );
