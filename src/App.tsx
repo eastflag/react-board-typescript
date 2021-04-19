@@ -1,17 +1,19 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Container from "react-bootstrap/Container";
 import BoardList from "./components/BoardList";
-import {Button, Col, Row} from "react-bootstrap";
+import {BrowserRouter, Switch, Route} from "react-router-dom";
+import BoardRegister from './components/BoardRegister';
 
 function App() {
   return (
     <Container className="p-5">
-      <Row className="mb-3 justify-content-end">
-        <Col xs="auto" sm="auto"><Button variant="primary">등 록</Button></Col>
-      </Row>
-      <BoardList></BoardList>
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/" component={BoardList}></Route>
+          <Route path="/add" component={BoardRegister}></Route>
+        </Switch>
+      </BrowserRouter>
     </Container>
   );
 }

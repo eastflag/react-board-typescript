@@ -1,10 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
-import {Col, Row } from 'react-bootstrap';
+import {Button, Col, Row} from 'react-bootstrap';
 import {Board} from "../dto/Board";
 import './BoardList.scss';
 
-const BoardList: React.FC = () => {
+const BoardList: React.FC = (props: any) => {
+  // console.log(props);
   const [boardList, setBoardList] = useState([]);
 
   useEffect(() => {
@@ -20,6 +21,11 @@ const BoardList: React.FC = () => {
 
   return (
     <>
+      <Row className="mb-3 justify-content-end">
+        <Col xs="auto" sm="auto">
+          <Button variant="primary" onClick={() => props.history.push('/add')}>등 록</Button>
+        </Col>
+      </Row>
       {
         boardList.map((board: Board)=>
           <Row className="py-2 board" key={board.id}>
