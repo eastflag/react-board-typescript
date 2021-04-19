@@ -8,8 +8,8 @@ import {Button, Col, Row} from "react-bootstrap";
 function App() {
   return (
     <Container className="p-5">
-      <Row className="mb-3">
-        <Col><Button variant="primary">등 록</Button></Col>
+      <Row className="mb-3 justify-content-end">
+        <Col xs="auto" sm="auto"><Button variant="primary">등 록</Button></Col>
       </Row>
       <BoardList></BoardList>
     </Container>

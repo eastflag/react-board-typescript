@@ -22,7 +22,7 @@ const BoardList: React.FC = () => {
     <>
       {
         boardList.map((board: Board)=>
-          <Row className="py-2 board">
+          <Row className="py-2 board" key={board.id}>
             <Col>{board.title}</Col>
             <Col xs="auto" sm="auto">{board.created}</Col>
           </Row>)
