@@ -23,7 +23,7 @@ const BoardList: React.FC = (props: any) => {
     <>
       <Row className="mb-3 justify-content-end">
         <Col xs="auto" sm="auto">
-          <Button variant="primary" onClick={() => props.history.push('/add')}>등 록</Button>
+          <Button variant="primary" onClick={() => props.history.push('/board-register')}>등 록</Button>
         </Col>
       </Row>
       {

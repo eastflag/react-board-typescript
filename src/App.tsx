@@ -12,7 +12,7 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Route exact path="/" component={BoardList}></Route>
-          <Route path="/board-add" component={BoardRegister}></Route>
+          <Route path="/board-register" component={BoardRegister}></Route>
           <Route path="/board-view/:id" component={BoardView}></Route>
         </Switch>
       </BrowserRouter>
