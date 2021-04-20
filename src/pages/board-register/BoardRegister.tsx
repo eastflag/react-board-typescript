@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Button, Form} from "react-bootstrap";
 import axios from 'axios';
-import {Board} from "../dto/Board";
+import {Board} from "../../dto/Board";
 
 const BoardRegister: React.FC = (props: any) => {
   const [validated, setValidated] = useState(false);

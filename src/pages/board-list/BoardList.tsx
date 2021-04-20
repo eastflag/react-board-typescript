@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import {Button, Col, Row} from 'react-bootstrap';
-import {Board} from "../dto/Board";
+import {Board} from "../../dto/Board";
 import './BoardList.scss';
 
 const BoardList: React.FC = (props: any) => {

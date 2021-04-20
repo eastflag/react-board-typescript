@@ -1,9 +1,10 @@
 import React from 'react';
 import './App.css';
 import Container from "react-bootstrap/Container";
-import BoardList from "./components/BoardList";
+import BoardList from "./pages/board-list/BoardList";
 import {BrowserRouter, Switch, Route} from "react-router-dom";
-import BoardRegister from './components/BoardRegister';
+import BoardRegister from './pages/board-register/BoardRegister';
+import BoardView from "./pages/board-view/BoardView";
 
 function App() {
   return (
@@ -11,7 +12,8 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Route exact path="/" component={BoardList}></Route>
-          <Route path="/add" component={BoardRegister}></Route>
+          <Route path="/board-add" component={BoardRegister}></Route>
+          <Route path="/board-view/:id" component={BoardView}></Route>
         </Switch>
       </BrowserRouter>
     </Container>
