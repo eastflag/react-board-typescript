@@ -22,8 +22,8 @@ const MyComponent = ({match}: any) => {
 
   return (
     <>
-      <Card>
-        <Card.Title>{board?.title}</Card.Title>
+      <Card className="p-3">
+        <Card.Title className="pb-2" style={{borderBottom: '1px solid #dddddd'}}>{board?.title}</Card.Title>
         <Card.Text>
           {board?.content}
         </Card.Text>

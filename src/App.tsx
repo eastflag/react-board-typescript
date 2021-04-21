@@ -8,7 +8,7 @@ import BoardView from "./pages/board-view/BoardView";
 
 function App() {
   return (
-    <Container className="p-5">
+    <Container className="py-5">
       <BrowserRouter>
         <Switch>
           <Route exact path="/" component={BoardList}></Route>
