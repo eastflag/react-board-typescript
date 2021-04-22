@@ -24,13 +24,13 @@ const BoardRegister: React.FC = (props: any) => {
       content: form.contentText.value
     }
     addBoard(board);
-
-    props.history.push('/');
   };
 
   const addBoard = async (board: Board) => {
     const res = await axios.post('/api/board', board);
     console.log(res);
+
+    props.history.push('/');
   }
 
   return (

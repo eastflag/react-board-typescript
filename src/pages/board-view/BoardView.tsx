@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Button, Card, Col, Row} from "react-bootstrap";
+import {Button, Card, Col, Modal, Row} from "react-bootstrap";
 import axios from "axios";
 import {Board} from "../../dto/Board";
 
@@ -8,6 +8,10 @@ const MyComponent = ({match, history}: any) => {
     title: '',
     content: ''
   });
+  // Modal
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   useEffect(() => {
     console.log(match);
@@ -20,10 +24,17 @@ const MyComponent = ({match, history}: any) => {
     setBoard(res.data);
   }
 
+  const handleDelete = async () => {
+    const res = await axios.delete(`/api/board?id=${match.params.id}`);
+    setShow(false);
+    history.goBack();
+  }
+
   return (
     <>
       <Row className="justify-content-end">
         <Button variant="info" onClick={() => history.push(`/board-edit/${match.params.id}`)}>수정</Button>
+        <Button variant="danger" onClick={() => handleShow()}>삭제</Button>
       </Row>
       <Card className="p-3 my-3">
         <Card.Title className="pb-2" style={{borderBottom: '1px solid #dddddd'}}>{board?.title}</Card.Title>
@@ -34,6 +45,21 @@ const MyComponent = ({match, history}: any) => {
       <Row className="justify-content-center">
         <Button variant="primary" onClick={() => history.goBack()}>돌아가기</Button>
       </Row>
+
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>삭제</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>삭제하시겠습니까?</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Cancel
+          </Button>
+          <Button variant="primary" onClick={handleDelete}>
+            OK
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </>
   );
 };
