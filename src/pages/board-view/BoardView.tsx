@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {Button, Card, Col, Modal, Row} from "react-bootstrap";
 import axios from "axios";
 import {Board} from "../../dto/Board";
+import CommentList from "../../components/CommentList";
 
 const MyComponent = ({match, history}: any) => {
   const [board, setBoard] = useState<Board>({
@@ -42,7 +43,8 @@ const MyComponent = ({match, history}: any) => {
           {board?.content}
         </Card.Text>
       </Card>
-      <Row className="justify-content-center">
+      <CommentList board_id={match.params.id}></CommentList>
+      <Row className="justify-content-center mt-3">
         <Button variant="primary" onClick={() => history.goBack()}>돌아가기</Button>
       </Row>
 
