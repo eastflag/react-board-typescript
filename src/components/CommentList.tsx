@@ -36,8 +36,9 @@ const CommentList: React.FC<Props> = (props) => {
       content: form.commentText.value
     }
 
-    const res = await axios.post('/api/comment', comment);
+    let res = await axios.post('/api/comment', comment);
     console.log(res);
+    res = await axios.get(`/api/comment?id=${res.data.id}`);
 
     const newComments = [...comments];
     newComments.unshift(res.data);
