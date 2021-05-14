@@ -12,8 +12,8 @@ function App() {
   return (
     <Container fluid className="p-0">
       <BrowserRouter>
-        <Navbar bg="light" expand="lg">
-          <Navbar.Brand href="#home">HOME</Navbar.Brand>
+        <Navbar bg="dark" variant="dark" expand="lg">
+          <Link to="/" className="navbar-brand">HOME</Link>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto flex-grow-1">
