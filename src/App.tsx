@@ -27,7 +27,7 @@ function App() {
                 <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
               </NavDropdown>
               {/*<span className="flex-grow-1"></span>*/}
-              <Nav.Link href="#link">로그인</Nav.Link>
+              <Nav.Link href="#link" className="ml-auto">로그인</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Navbar>
