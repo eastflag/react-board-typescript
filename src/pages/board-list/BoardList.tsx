@@ -14,7 +14,7 @@ const BoardList: React.FC = (props: any) => {
 
   const getBoardList = async () => {
     // res는 http response의 header + body를 모두 갖고 있다.
-    const res  = await axios.get('/api/boards');
+    const res  = await axios.get('/api/board/list');
     console.log(res);
     setBoardList(res.data);
   }
@@ -22,12 +22,12 @@ const BoardList: React.FC = (props: any) => {
   return (
     <>
       <Row className="mb-3 justify-content-end">
-        <Col xs="auto" sm="auto">
+        <Col xs="auto">
           <Button variant="primary" onClick={() => props.history.push('/board-register')}>등 록</Button>
         </Col>
       </Row>
       {
-        boardList.map((board: Board)=>
+        boardList.map((board: Board) =>
           <Row className="py-2 board" key={board.id} onClick={() => props.history.push(`/board-view/${board.id}`)}>
             <Col>{board.title}</Col>
             <Col xs="auto" sm="auto">{board.created}</Col>
