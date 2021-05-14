@@ -10,7 +10,7 @@ import {Nav, Navbar, NavDropdown} from "react-bootstrap";
 
 function App() {
   return (
-    <Container>
+    <Container fluid className="p-0">
       <BrowserRouter>
         <Navbar bg="light" expand="lg">
           <Navbar.Brand href="#home">HOME</Navbar.Brand>
@@ -26,7 +26,7 @@ function App() {
                 <NavDropdown.Divider />
                 <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
               </NavDropdown>
-              <span className="flex-grow-1"></span>
+              {/*<span className="flex-grow-1"></span>*/}
               <Nav.Link href="#link">로그인</Nav.Link>
             </Nav>
           </Navbar.Collapse>
