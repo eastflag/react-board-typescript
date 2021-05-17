@@ -24,14 +24,14 @@ function App() {
             </Nav>
           </Navbar.Collapse>
         </Navbar>
-        <Switch>
-          <div className="px-3 py-2">
+        <div className="px-3 py-2">
+          <Switch>
             <Route exact path="/" component={BoardList}></Route>
             <Route path="/board-register" component={BoardRegister}></Route>
             <Route path="/board-view/:id" component={BoardView}></Route>
             <Route path="/board-edit/:id" component={BoardEdit}></Route>
-          </div>
-        </Switch>
+          </Switch>
+        </div>
       </BrowserRouter>
     </Container>
   );
