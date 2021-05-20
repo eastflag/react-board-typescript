@@ -10,21 +10,23 @@ import {Nav, Navbar, NavDropdown} from "react-bootstrap";
 
 function App() {
   return (
-    <Container fluid className="p-0">
+    <>
       <BrowserRouter>
-        <Navbar bg="dark" variant="dark" expand="lg">
-          <Link to="/" className="navbar-brand">HOME</Link>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="mr-auto flex-grow-1">
-              <Link to="/" className="nav-link">게시판</Link>
-              <Link to="/board-register" className="nav-link">등록</Link>
-              <span className="flex-grow-1"></span>
-              <Link to="/login" className="nav-link">로그인</Link>
-            </Nav>
-          </Navbar.Collapse>
-        </Navbar>
-        <Container className="px-3 py-2">
+        <Container fluid className="p-0">
+          <Navbar bg="dark" variant="dark" expand="lg">
+            <Link to="/" className="navbar-brand">HOME</Link>
+            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            <Navbar.Collapse id="basic-navbar-nav">
+              <Nav className="mr-auto flex-grow-1">
+                <Link to="/" className="nav-link">게시판</Link>
+                <Link to="/board-register" className="nav-link">등록</Link>
+                <span className="flex-grow-1"></span>
+                <Link to="/login" className="nav-link">로그인</Link>
+              </Nav>
+            </Navbar.Collapse>
+          </Navbar>
+        </Container>
+        <Container fluid className="px-3 py-2">
           <Switch>
             <Route exact path="/" component={BoardList}></Route>
             <Route path="/board-register" component={BoardRegister}></Route>
@@ -33,7 +35,7 @@ function App() {
           </Switch>
         </Container>
       </BrowserRouter>
-    </Container>
+    </>
   );
 }
 
