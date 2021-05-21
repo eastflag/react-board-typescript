@@ -7,6 +7,8 @@ import BoardRegister from './pages/board-register/BoardRegister';
 import BoardView from "./pages/board-view/BoardView";
 import BoardEdit from "./pages/board-edit/BoardEdit";
 import {Nav, Navbar, NavDropdown} from "react-bootstrap";
+import Login from "./pages/login/Login";
+import SignUp from "./pages/sign-up/SignUp";
 
 function App() {
   return (
@@ -32,6 +34,8 @@ function App() {
             <Route path="/board-register" component={BoardRegister}></Route>
             <Route path="/board-view/:id" component={BoardView}></Route>
             <Route path="/board-edit/:id" component={BoardEdit}></Route>
+            <Route path="/login" component={Login}></Route>
+            <Route path="/sign-up" component={SignUp}></Route>
           </Switch>
         </Container>
       </BrowserRouter>
