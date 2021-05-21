@@ -3,14 +3,35 @@ import React from 'react';
 import {Button, Form} from "react-bootstrap";
 import * as Yup from "yup";
 import axios from "axios";
+import {toast} from 'react-toastify';
 
 const SignUp = (props: any) => {
   const submit = async (values: any) => {
     console.log(values);
     const {email, password, username} = values;
-    const {status, data} = await axios.post('/api/auth/signup', {email, password, username});
-    if (status >= 200 && status < 300) {
+    try {
+      await axios.post('/api/auth/signup', {email, password, username});
+
+      toast.success('회원등록하였습니다. 로그인하세요', {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
       props.history.push('/login');
+    } catch {
+      toast.error('실패하였습니다. 다시 시도하세요', {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     }
   }
   return (

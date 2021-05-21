@@ -10,6 +10,11 @@ import {Nav, Navbar, NavDropdown} from "react-bootstrap";
 import Login from "./pages/login/Login";
 import SignUp from "./pages/sign-up/SignUp";
 
+// 3rd react-toastify
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
 function App() {
   return (
     <>
@@ -39,6 +44,7 @@ function App() {
           </Switch>
         </Container>
       </BrowserRouter>
+      <ToastContainer />
     </>
   );
 }
