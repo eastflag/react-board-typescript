@@ -22,7 +22,7 @@ const SignUp = (props: any) => {
         progress: undefined,
       });
       props.history.push('/login');
-    } catch {
+    } catch(e) {
       toast.error('실패하였습니다. 다시 시도하세요', {
         position: "top-center",
         autoClose: 3000,
