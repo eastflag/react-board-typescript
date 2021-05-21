@@ -5,7 +5,7 @@ import {Button, Col, Form, Row} from "react-bootstrap";
 import axios from "axios";
 import {toast} from "react-toastify";
 
-const Login = () => {
+const Login = (props: any) => {
   const submit = async (values: any) => {
     const {email, password} = values;
     try {
@@ -21,6 +21,7 @@ const Login = () => {
         draggable: true,
         progress: undefined,
       });
+      props.history.push('/');
     } catch(e) {
       console.log(e.toString());
       toast.error('로그인에 실패하였습니다. 다시 시도하세요', {
