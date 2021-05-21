@@ -4,13 +4,13 @@ import {Button, Form} from "react-bootstrap";
 import * as Yup from "yup";
 import axios from "axios";
 
-const SignUp = ({history}) => {
+const SignUp = (props: any) => {
   const submit = async (values: any) => {
     console.log(values);
     const {email, password, username} = values;
     const {status, data} = await axios.post('/api/auth/signup', {email, password, username});
     if (status >= 200 && status < 300) {
-      history.push('/login');
+      props.history.push('/login');
     }
   }
   return (
