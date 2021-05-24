@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import './App.css';
 import Container from "react-bootstrap/Container";
 import BoardList from "./pages/board-list/BoardList";
-import {BrowserRouter, Switch, Route, Link} from "react-router-dom";
+import {BrowserRouter, Switch, Route, Link, useHistory} from "react-router-dom";
 import BoardRegister from './pages/board-register/BoardRegister';
 import BoardView from "./pages/board-view/BoardView";
 import BoardEdit from "./pages/board-edit/BoardEdit";
@@ -13,9 +13,32 @@ import SignUp from "./pages/sign-up/SignUp";
 // 3rd react-toastify
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import PrivateRoute from "./routes/PrivateRoute";
+import {jwtUtils} from "./utils/jwtUtils";
+import {useDispatch, useSelector} from "react-redux";
+import {setToken} from "./redux/reducers/AuthReducer";
 
 
-function App() {
+function App(props: any) {
+  console.log(props);
+  const [isAuth, setIsAuth] = useState(false);
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const token = useSelector((state: any) => state.Auth.token);
+
+  useEffect(() => {
+    if (jwtUtils.isAuth(token)) {
+      setIsAuth(true);
+    } else {
+      setIsAuth(true);
+    }
+  }, []);
+
+  const logout = () => {
+    dispatch(setToken(''));
+    history.push('/')
+  }
+
   return (
     <>
       <BrowserRouter>
@@ -28,7 +51,11 @@ function App() {
                 <Link to="/" className="nav-link">게시판</Link>
                 <Link to="/board-register" className="nav-link">등록</Link>
                 <span className="flex-grow-1"></span>
-                <Link to="/login" className="nav-link">로그인</Link>
+                {
+                  isAuth ? <Nav.Link onClick={logout}>로그아웃</Nav.Link> :
+                    <Link to="/login" className="nav-link">로그인</Link>
+                }
+
               </Nav>
             </Navbar.Collapse>
           </Navbar>
@@ -36,7 +63,7 @@ function App() {
         <Container fluid className="px-3 py-2">
           <Switch>
             <Route exact path="/" component={BoardList}></Route>
-            <Route path="/board-register" component={BoardRegister}></Route>
+            <PrivateRoute path="/board-register" component={BoardRegister}></PrivateRoute>
             <Route path="/board-view/:id" component={BoardView}></Route>
             <Route path="/board-edit/:id" component={BoardEdit}></Route>
             <Route path="/login" component={Login}></Route>

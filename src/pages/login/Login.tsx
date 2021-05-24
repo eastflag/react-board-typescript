@@ -4,13 +4,26 @@ import * as Yup from "yup";
 import {Button, Col, Form, Row} from "react-bootstrap";
 import axios from "axios";
 import {toast} from "react-toastify";
+import {useDispatch} from "react-redux";
+import {setToken} from "../../redux/reducers/AuthReducer";
+import * as queryString from "querystring";
 
 const Login = (props: any) => {
+  console.log(props);
+  const dispatch = useDispatch();
   const submit = async (values: any) => {
     const {email, password} = values;
     try {
       const {data} = await axios.post('/api/auth/signin', {email, password});
       console.log(data);
+
+      dispatch(setToken(data.token))
+      const {redirectUrl} = queryString.parse(props.location.search);
+      if (redirectUrl) {
+        props.history.push(redirectUrl);
+      } else {
+        props.history.push('/');
+      }
 
       toast.success('로그인하였습니다.', {
         position: "top-center",
