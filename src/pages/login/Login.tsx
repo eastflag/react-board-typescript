@@ -6,7 +6,7 @@ import axios from "axios";
 import {toast} from "react-toastify";
 import {useDispatch} from "react-redux";
 import {setToken} from "../../redux/reducers/AuthReducer";
-import * as queryString from "querystring";
+import queryString from "query-string";
 
 const Login = (props: any) => {
   console.log(props);
@@ -17,8 +17,9 @@ const Login = (props: any) => {
       const {data} = await axios.post('/api/auth/signin', {email, password});
       console.log(data);
 
-      dispatch(setToken(data.token))
+      dispatch(setToken(data.jwt))
       const {redirectUrl} = queryString.parse(props.location.search);
+
       if (redirectUrl) {
         props.history.push(redirectUrl);
       } else {

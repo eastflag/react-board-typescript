@@ -17,8 +17,8 @@ const PrivateRoute = (props) => {
 
   const token = useSelector(state => state.Auth.token);
 
-  // 아래 view가 리턴되지 않도록 한다. jwtUtils.getRoles() 실행시 에러 발생함.
-  // 이후에 useEffect가 실행된다.
+  // 아래 view가 리턴되지 않도록 한다.
+  // redirectUrl은 로그인이 성공후 돌아갈 화면이다.
   if (!jwtUtils.isAuth(token)) {
     return <Redirect to={`${ROUTES_PATH.Login}?redirectUrl=${props.path}`} />
   }

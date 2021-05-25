@@ -17,10 +17,10 @@ import PrivateRoute from "./routes/PrivateRoute";
 import {jwtUtils} from "./utils/jwtUtils";
 import {useDispatch, useSelector} from "react-redux";
 import {setToken} from "./redux/reducers/AuthReducer";
+import Home from "./pages/Home";
 
 
 function App(props: any) {
-  console.log(props);
   const [isAuth, setIsAuth] = useState(false);
   const dispatch = useDispatch();
   const history = useHistory();
@@ -30,13 +30,12 @@ function App(props: any) {
     if (jwtUtils.isAuth(token)) {
       setIsAuth(true);
     } else {
-      setIsAuth(true);
+      setIsAuth(false);
     }
-  }, []);
+  }, [token]);
 
   const logout = () => {
     dispatch(setToken(''));
-    history.push('/')
   }
 
   return (
@@ -48,7 +47,7 @@ function App(props: any) {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="mr-auto flex-grow-1">
-                <Link to="/" className="nav-link">게시판</Link>
+                <Link to="/board-list" className="nav-link">게시판</Link>
                 <Link to="/board-register" className="nav-link">등록</Link>
                 <span className="flex-grow-1"></span>
                 {
@@ -62,10 +61,11 @@ function App(props: any) {
         </Container>
         <Container fluid className="px-3 py-2">
           <Switch>
-            <Route exact path="/" component={BoardList}></Route>
+            <Route exact path="/" component={Home}></Route>
+            <Route path="/board-list" component={BoardList}></Route>
             <PrivateRoute path="/board-register" component={BoardRegister}></PrivateRoute>
             <Route path="/board-view/:id" component={BoardView}></Route>
-            <Route path="/board-edit/:id" component={BoardEdit}></Route>
+            <PrivateRoute path="/board-edit/:id" component={BoardEdit}></PrivateRoute>
             <Route path="/login" component={Login}></Route>
             <Route path="/sign-up" component={SignUp}></Route>
           </Switch>
