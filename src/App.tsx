@@ -48,7 +48,7 @@ function App(props: any) {
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="mr-auto flex-grow-1">
                 <Link to="/board-list" className="nav-link">게시판</Link>
-                <Link to="/board-register" className="nav-link">등록</Link>
+                <Link to="/board-register" className="nav-link">글등록</Link>
                 <span className="flex-grow-1"></span>
                 {
                   isAuth ? <Nav.Link onClick={logout}>로그아웃</Nav.Link> :

@@ -101,9 +101,14 @@ const Login = (props: any) => {
                   {touched.password && errors.password &&
                     <Form.Control.Feedback type="invalid">{errors.password}</Form.Control.Feedback>}
                 </Form.Group>
-                <Button variant="primary" type="submit" disabled={isSubmitting}>
-                  Submit
-                </Button>
+                <div className="d-flex justify-content-between">
+                  <Button variant="link" onClick={() => props.push('/sign-up')}>
+                    Sign Up
+                  </Button>
+                  <Button variant="primary" type="submit" disabled={isSubmitting}>
+                    Submit
+                  </Button>
+                </div>
               </Form>)
             }
           </Formik>
