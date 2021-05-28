@@ -35,7 +35,6 @@ const Login = (props: any) => {
         draggable: true,
         progress: undefined,
       });
-      props.history.push('/');
     } catch(e) {
       console.log(e.toString());
       toast.error('로그인에 실패하였습니다. 다시 시도하세요', {
