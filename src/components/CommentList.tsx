@@ -21,7 +21,7 @@ const CommentList: React.FC<Props> = (props) => {
   }, [props.board_id]);
 
   const getComments = async (board_id: number) => {
-    const res = await axios.get(`/api/comments?board_id=${props.board_id}`);
+    const res = await axios.get(`/api/comment/list?board_id=${props.board_id}`);
     setComments(res.data);
   }
 
