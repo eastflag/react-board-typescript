@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Button, Form} from "react-bootstrap";
-import axios from 'axios';
 import {Board} from "../../dto/Board";
+import api from "../../utils/api";
 
 const BoardRegister: React.FC = (props: any) => {
   const [validated, setValidated] = useState(false);
@@ -27,7 +27,7 @@ const BoardRegister: React.FC = (props: any) => {
   };
 
   const addBoard = async (board: Board) => {
-    const res = await axios.post('/api/board', board);
+    const res = await api.post('/api/board', board);
     console.log(res);
 
     props.history.push('/');

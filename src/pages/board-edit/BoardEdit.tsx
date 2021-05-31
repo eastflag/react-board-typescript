@@ -1,7 +1,7 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {Board} from "../../dto/Board";
-import axios from "axios";
 import {Button, Form} from "react-bootstrap";
+import api from "../../utils/api";
 
 const BoardEdit: React.FC = ({match, history}: any) => {
   const [validated, setValidated] = useState(false);
@@ -23,7 +23,7 @@ const BoardEdit: React.FC = ({match, history}: any) => {
   }, []);
 
   const getBoard = async (id: string) => {
-    const res = await axios.get(`/api/board/${id}`);
+    const res = await api.get(`/api/board/${id}`);
     console.log(res.data);
     setBoard(res.data);
   }
@@ -52,7 +52,7 @@ const BoardEdit: React.FC = ({match, history}: any) => {
   };
 
   const updateBoard = async (board: Board) => {
-    const res = await axios.put('/api/board', board);
+    const res = await api.put('/api/board', board);
     console.log(res);
 
     history.push('/');

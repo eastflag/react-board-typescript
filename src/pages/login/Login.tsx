@@ -2,11 +2,11 @@ import React from 'react';
 import {Formik} from "formik";
 import * as Yup from "yup";
 import {Button, Col, Form, Row} from "react-bootstrap";
-import axios from "axios";
 import {toast} from "react-toastify";
 import {useDispatch} from "react-redux";
 import {setToken} from "../../redux/reducers/AuthReducer";
 import queryString from "query-string";
+import api from "../../utils/api";
 
 const Login = (props: any) => {
   console.log(props);
@@ -14,7 +14,7 @@ const Login = (props: any) => {
   const submit = async (values: any) => {
     const {email, password} = values;
     try {
-      const {data} = await axios.post('/api/auth/signin', {email, password});
+      const {data} = await api.post('/api/auth/signin', {email, password});
       console.log(data);
 
       dispatch(setToken(data.jwt))

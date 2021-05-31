@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import axios from "axios";
 import {Button, Col, Row} from 'react-bootstrap';
 import {Board} from "../../dto/Board";
 import './BoardList.scss';
+import api from "../../utils/api";
 
 const BoardList: React.FC = (props: any) => {
   // console.log(props);
@@ -14,7 +14,7 @@ const BoardList: React.FC = (props: any) => {
 
   const getBoardList = async () => {
     // res는 http response의 header + body를 모두 갖고 있다.
-    const res  = await axios.get('/api/board/list');
+    const res  = await api.get('/api/board/list');
     console.log(res);
     setBoardList(res.data);
   }

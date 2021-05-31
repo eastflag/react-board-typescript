@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import {Button, Card, Col, Modal, Row} from "react-bootstrap";
-import axios from "axios";
+import {Button, Card, Modal, Row} from "react-bootstrap";
 import {Board} from "../../dto/Board";
 import CommentList from "../../components/CommentList";
+import api from "../../utils/api";
 
 const MyComponent = ({match, history}: any) => {
   const [board, setBoard] = useState<Board>({
@@ -20,13 +20,13 @@ const MyComponent = ({match, history}: any) => {
   }, []);
 
   const getBoard = async (id: string) => {
-    const res = await axios.get(`/api/board/${id}`);
+    const res = await api.get(`/api/board/${id}`);
     console.log(res.data);
     setBoard(res.data);
   }
 
   const handleDelete = async () => {
-    const res = await axios.delete(`/api/board?id=${match.params.id}`);
+    const res = await api.delete(`/api/board?id=${match.params.id}`);
     setShow(false);
     history.goBack();
   }
