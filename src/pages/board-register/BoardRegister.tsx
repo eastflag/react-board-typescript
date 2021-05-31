@@ -2,9 +2,12 @@ import React, {useState} from 'react';
 import {Button, Form} from "react-bootstrap";
 import {Board} from "../../dto/Board";
 import api from "../../utils/api";
+import {useSelector} from "react-redux";
+import {jwtUtils} from "../../utils/jwtUtils";
 
 const BoardRegister: React.FC = (props: any) => {
   const [validated, setValidated] = useState(false);
+  const token = useSelector((state: any) => state.Auth.token);
 
   const handleSubmit = (event: any) => {
     event.preventDefault();
@@ -21,8 +24,10 @@ const BoardRegister: React.FC = (props: any) => {
     console.log(form.titleInput.value);
     const board = {
       title: form.titleInput.value,
-      content: form.contentText.value
+      content: form.contentText.value,
+      user_id: jwtUtils.getId(token)
     }
+    console.log(board);
     addBoard(board);
   };
 
@@ -30,7 +35,7 @@ const BoardRegister: React.FC = (props: any) => {
     const res = await api.post('/api/board', board);
     console.log(res);
 
-    props.history.push('/');
+    props.history.push('/board-list');
   }
 
   return (

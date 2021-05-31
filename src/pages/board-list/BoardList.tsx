@@ -29,8 +29,9 @@ const BoardList: React.FC = (props: any) => {
       {
         boardList.map((board: Board) =>
           <Row className="py-2 board" key={board.id} onClick={() => props.history.push(`/board-view/${board.id}`)}>
-            <Col>{board.title}</Col>
-            <Col xs="auto" sm="auto">{board.created}</Col>
+            <Col xs={8}>{board.title}</Col>
+            <Col xs={2} className="text-right">{board.user?.username}</Col>
+            <Col xs={2} className="text-right">{board.created}</Col>
           </Row>)
       }
     </>

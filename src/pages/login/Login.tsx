@@ -102,7 +102,7 @@ const Login = (props: any) => {
                     <Form.Control.Feedback type="invalid">{errors.password}</Form.Control.Feedback>}
                 </Form.Group>
                 <div className="d-flex justify-content-between">
-                  <Button variant="link" onClick={() => props.push('/sign-up')}>
+                  <Button variant="link" onClick={() => props.history.push('/sign-up')}>
                     Sign Up
                   </Button>
                   <Button variant="primary" type="submit" disabled={isSubmitting}>

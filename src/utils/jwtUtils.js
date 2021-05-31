@@ -15,11 +15,11 @@ export const jwtUtils = {
   },
   getId: (token) => {
     const decoded = jwtDecode(token)
-    return decoded.id;
+    return decoded.jti;
   },
   getName: (token) => {
     const decoded = jwtDecode(token)
-    return decoded.name;
+    return decoded.subject;
   },
   getRoles: (token) => {
     const decoded = jwtDecode(token)

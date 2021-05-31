@@ -28,6 +28,7 @@ const CommentList: React.FC<Props> = (props) => {
     setComments(res.data);
   }
 
+
   const handleSubmit = async (event: any) => {
     event.preventDefault();
     event.stopPropagation();
