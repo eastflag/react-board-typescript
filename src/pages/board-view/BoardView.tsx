@@ -43,7 +43,7 @@ const MyComponent = ({match, history}: any) => {
           {board?.content}
         </Card.Text>
       </Card>
-      <CommentList board_id={match.params.id}></CommentList>
+      <CommentList board_id={match.params.id} history={history}></CommentList>
       <Row className="justify-content-center mt-3">
         <Button variant="primary" onClick={() => history.goBack()}>돌아가기</Button>
       </Row>

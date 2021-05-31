@@ -1,16 +1,19 @@
 import React, {useEffect, useState} from 'react';
 import {Button, Col, Form, Row} from "react-bootstrap";
 import {Comment} from "../dto/Comment";
-import axios from "axios";
 import "./CommentList.scss";
-import {Board} from "../dto/Board";
+import {jwtUtils} from "../utils/jwtUtils";
+import {useSelector} from "react-redux";
+import api from "../utils/api";
 
 interface Props {
   board_id: number;
+  history: any;
 }
 
 const CommentList: React.FC<Props> = (props) => {
   const [comments, setComments] = useState<Array<Comment>>([]);
+  const token = useSelector((state: any) => state.Auth.token);
 
   useEffect(() => {
     if (!props.board_id) {
@@ -21,7 +24,7 @@ const CommentList: React.FC<Props> = (props) => {
   }, [props.board_id]);
 
   const getComments = async (board_id: number) => {
-    const res = await axios.get(`/api/comment/list?board_id=${props.board_id}`);
+    const res = await api.get(`/api/comment/list?board_id=${props.board_id}`);
     setComments(res.data);
   }
 
@@ -36,9 +39,9 @@ const CommentList: React.FC<Props> = (props) => {
       content: form.commentText.value
     }
 
-    let res = await axios.post('/api/comment', comment);
+    let res = await api.post('/api/comment', comment);
     console.log(res);
-    res = await axios.get(`/api/comment?id=${res.data.id}`);
+    res = await api.get(`/api/comment?id=${res.data.id}`);
 
     const newComments = [...comments];
     newComments.unshift(res.data);
@@ -47,12 +50,18 @@ const CommentList: React.FC<Props> = (props) => {
     form.commentText.value = '';
   };
 
+  const handleFocus = () => {
+    if (!jwtUtils.isAuth(token)) {
+      props.history.push('/login')
+    }
+  }
+
   return (
     <>
       <Form className="mb-4" onSubmit={handleSubmit}>
         <Form.Group controlId="commentText">
           <Form.Label>댓글</Form.Label>
-          <Form.Control required as="textarea" rows={4} />
+          <Form.Control required as="textarea" rows={4} onFocus={handleFocus} />
         </Form.Group>
         <Button variant="primary" type="submit">
           등록
