@@ -5,6 +5,7 @@ import "./CommentList.scss";
 import {jwtUtils} from "../utils/jwtUtils";
 import {useSelector} from "react-redux";
 import api from "../utils/api";
+import AlertModal from "./AlertModal";
 
 interface Props {
   board_id: number;
@@ -12,10 +13,12 @@ interface Props {
 }
 
 const CommentList: React.FC<Props> = (props) => {
+  const [showModal, setShowModal] = useState(false);
   const [comments, setComments] = useState<Array<Comment>>([]);
   const token = useSelector((state: any) => state.Auth.token);
 
   useEffect(() => {
+    console.log(props.history);
     if (!props.board_id) {
       return;
     }
@@ -54,8 +57,18 @@ const CommentList: React.FC<Props> = (props) => {
 
   const handleFocus = () => {
     if (!jwtUtils.isAuth(token)) {
-      props.history.push('/login')
+      setShowModal(true);
     }
+  }
+
+  const onCancel = () => {
+    setShowModal(false);
+  }
+
+  const onOk = () => {
+    setShowModal(false);
+    // 로그인후 돌아올수 있게 현재경로를 세팅한다.
+    props.history.push(`/login?redirectUrl=${props.history.location.pathname}`)
   }
 
   return (
@@ -63,7 +76,7 @@ const CommentList: React.FC<Props> = (props) => {
       <Form className="mb-4" onSubmit={handleSubmit}>
         <Form.Group controlId="commentText">
           <Form.Label>댓글</Form.Label>
-          <Form.Control required as="textarea" rows={4} onFocus={handleFocus} />
+          <Form.Control required as="textarea" rows={4} onClick={handleFocus} />
         </Form.Group>
         <Button variant="primary" type="submit">
           등록
@@ -82,8 +95,11 @@ const CommentList: React.FC<Props> = (props) => {
           </Row>
         )
       }
+      <AlertModal show={showModal} header="댓글 등록" body="로그인하시겠습니까?" centered={true}
+                  onOk={onOk}
+                  onCancel={onCancel}>
+      </AlertModal>
     </>
-
   );
 };
 

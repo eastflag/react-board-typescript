@@ -4,15 +4,11 @@ import {useDispatch, useSelector} from "react-redux";
 import {ROUTES_PATH} from "./index";
 import {jwtUtils} from "../utils/jwtUtils";
 
-import {setToken} from "../redux/reducers/AuthReducer";
-
 const PrivateRoute = (props) => {
   // BrowseRouter로 부터 넘어오는 props를 파악하는게 중요.
   // path, location ...
   console.log(props);
 
-  const dispatch = useDispatch();
-  const history = useHistory();
   const { component: RouteComponent, ...rest } = props;
 
   const token = useSelector(state => state.Auth.token);
