@@ -37,7 +37,8 @@ const CommentList: React.FC<Props> = (props) => {
 
     const comment = {
       board_id: props.board_id,
-      content: form.commentText.value
+      content: form.commentText.value,
+      user_id: jwtUtils.getId(token)
     }
 
     let res = await api.post('/api/comment', comment);
@@ -71,7 +72,12 @@ const CommentList: React.FC<Props> = (props) => {
       {
         comments.map((comment: Comment) =>
           <Row className="comment" key={comment.id}>
-            <Col xs={12} className="date">{comment.created}</Col>
+            <Col xs={12}>
+              <div className="d-flex justify-content-between">
+                <span className="date">{comment.user?.username}</span>
+                <span className="date">{comment.created}</span>
+              </div>
+            </Col>
             <Col xs={12}>{comment.content}</Col>
           </Row>
         )
