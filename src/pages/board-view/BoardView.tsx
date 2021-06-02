@@ -3,12 +3,17 @@ import {Button, Card, Modal, Row} from "react-bootstrap";
 import {Board} from "../../dto/Board";
 import CommentList from "../../components/CommentList";
 import api from "../../utils/api";
+import {jwtUtils} from "../../utils/jwtUtils";
+import {useSelector} from "react-redux";
+import moment from "moment";
 
 const MyComponent = ({match, history}: any) => {
   const [board, setBoard] = useState<Board>({
     title: '',
     content: ''
   });
+  const token = useSelector((state: any) => state.Auth.token);
+
   // Modal
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -33,10 +38,16 @@ const MyComponent = ({match, history}: any) => {
 
   return (
     <>
-      <Row className="justify-content-end">
-        <Button variant="info" onClick={() => history.push(`/board-edit/${match.params.id}`)}>수정</Button>
-        <Button variant="danger" onClick={() => handleShow()}>삭제</Button>
-      </Row>
+      {jwtUtils.isAuth(token) && jwtUtils.getId(token) === board?.user?.id &&
+        <div className="d-flex justify-content-end">
+          <Button variant="info" onClick={() => history.push(`/board-edit/${match.params.id}`)}>수정</Button>
+          <Button variant="danger" onClick={() => handleShow()}>삭제</Button>
+        </div>
+      }
+      <div className="d-flex justify-content-between mt-3">
+        <h5>{board?.user?.username}</h5>
+        <h5>{moment(board?.created).format('YYYY-MM-DD')}</h5>
+      </div>
       <Card className="p-3 my-3">
         <Card.Title className="pb-2" style={{borderBottom: '1px solid #dddddd'}}>{board?.title}</Card.Title>
         <Card.Text>
@@ -64,6 +75,6 @@ const MyComponent = ({match, history}: any) => {
       </Modal>
     </>
   );
-};
+}
 
 export default MyComponent;
