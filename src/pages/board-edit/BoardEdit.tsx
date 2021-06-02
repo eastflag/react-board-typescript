@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Board} from "../../dto/Board";
 import {Button, Form} from "react-bootstrap";
 import api from "../../utils/api";

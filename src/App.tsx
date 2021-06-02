@@ -2,16 +2,16 @@ import React, {useEffect, useState} from 'react';
 import './App.css';
 import Container from "react-bootstrap/Container";
 import BoardList from "./pages/board-list/BoardList";
-import {BrowserRouter, Switch, Route, Link, useHistory} from "react-router-dom";
+import {BrowserRouter, Link, Route, Switch} from "react-router-dom";
 import BoardRegister from './pages/board-register/BoardRegister';
 import BoardView from "./pages/board-view/BoardView";
 import BoardEdit from "./pages/board-edit/BoardEdit";
-import {Nav, Navbar, NavDropdown} from "react-bootstrap";
+import {Nav, Navbar} from "react-bootstrap";
 import Login from "./pages/login/Login";
 import SignUp from "./pages/sign-up/SignUp";
 
 // 3rd react-toastify
-import { ToastContainer, toast } from 'react-toastify';
+import {ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import PrivateRoute from "./routes/PrivateRoute";
 import {jwtUtils} from "./utils/jwtUtils";
@@ -23,7 +23,6 @@ import Home from "./pages/Home";
 function App(props: any) {
   const [isAuth, setIsAuth] = useState(false);
   const dispatch = useDispatch();
-  const history = useHistory();
   const token = useSelector((state: any) => state.Auth.token);
 
   useEffect(() => {

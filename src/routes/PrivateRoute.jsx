@@ -1,6 +1,6 @@
 import React from 'react';
-import {Redirect, Route, useHistory} from "react-router-dom";
-import {useDispatch, useSelector} from "react-redux";
+import {Redirect, Route} from "react-router-dom";
+import {useSelector} from "react-redux";
 import {ROUTES_PATH} from "./index";
 import {jwtUtils} from "../utils/jwtUtils";
 
