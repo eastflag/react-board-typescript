@@ -6,6 +6,7 @@ import {jwtUtils} from "../utils/jwtUtils";
 import {useSelector} from "react-redux";
 import api from "../utils/api";
 import AlertModal from "./AlertModal";
+import {StringUtils} from "../utils/StringUtils";
 
 interface Props {
   board_id: number;
@@ -88,7 +89,7 @@ const CommentList: React.FC<Props> = (props) => {
             <Col xs={12}>
               <div className="d-flex justify-content-between">
                 <span className="date">{comment.user?.username}</span>
-                <span className="date">{comment.created}</span>
+                <span className="date">{StringUtils.getRecentDate(comment.created)}</span>
               </div>
             </Col>
             <Col xs={12}>{comment.content}</Col>

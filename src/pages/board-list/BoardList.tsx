@@ -3,6 +3,7 @@ import {Button, Col, Row} from 'react-bootstrap';
 import {Board} from "../../dto/Board";
 import './BoardList.scss';
 import api from "../../utils/api";
+import {StringUtils} from "../../utils/StringUtils"; // 한글화
 
 const BoardList: React.FC = (props: any) => {
   // console.log(props);
@@ -31,7 +32,7 @@ const BoardList: React.FC = (props: any) => {
           <Row className="py-2 board" key={board.id} onClick={() => props.history.push(`/board-view/${board.id}`)}>
             <Col xs={8}>{board.title}</Col>
             <Col xs={2} className="text-right">{board.user?.username}</Col>
-            <Col xs={2} className="text-right">{board.created}</Col>
+            <Col xs={2} className="text-right">{StringUtils.getRecentDate(board.created)}</Col>
           </Row>)
       }
     </>
