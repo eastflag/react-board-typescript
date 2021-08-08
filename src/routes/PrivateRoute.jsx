@@ -2,7 +2,7 @@ import React from 'react';
 import {Redirect, Route} from "react-router-dom";
 import {useSelector} from "react-redux";
 import {ROUTES_PATH} from "./index";
-import {jwtUtils} from "../utils/jwtUtils";
+import {jwtUtils} from "../utils/JwtUtils";
 
 const PrivateRoute = (props) => {
   // BrowseRouter로 부터 넘어오는 props를 파악하는게 중요.

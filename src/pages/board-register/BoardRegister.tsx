@@ -3,7 +3,7 @@ import {Button, Form} from "react-bootstrap";
 import {Board} from "../../dto/Board";
 import api from "../../utils/api";
 import {useSelector} from "react-redux";
-import {jwtUtils} from "../../utils/jwtUtils";
+import {jwtUtils} from "../../utils/JwtUtils";
 
 const BoardRegister: React.FC = (props: any) => {
   const [validated, setValidated] = useState(false);

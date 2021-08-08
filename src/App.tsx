@@ -14,7 +14,7 @@ import SignUp from "./pages/sign-up/SignUp";
 import {ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import PrivateRoute from "./routes/PrivateRoute";
-import {jwtUtils} from "./utils/jwtUtils";
+import {jwtUtils} from "./utils/JwtUtils";
 import {useDispatch, useSelector} from "react-redux";
 import {setToken} from "./redux/reducers/AuthReducer";
 import Home from "./pages/Home";

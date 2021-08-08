@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {Button, Col, Form, Row} from "react-bootstrap";
 import {Comment} from "../dto/Comment";
 import "./CommentList.scss";
-import {jwtUtils} from "../utils/jwtUtils";
+import {jwtUtils} from "../utils/JwtUtils";
 import {useSelector} from "react-redux";
 import api from "../utils/api";
 import AlertModal from "./AlertModal";

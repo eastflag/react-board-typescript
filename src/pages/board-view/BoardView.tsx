@@ -3,7 +3,7 @@ import {Button, Card, Modal, Row} from "react-bootstrap";
 import {Board} from "../../dto/Board";
 import CommentList from "../../components/CommentList";
 import api from "../../utils/api";
-import {jwtUtils} from "../../utils/jwtUtils";
+import {jwtUtils} from "../../utils/JwtUtils";
 import {useSelector} from "react-redux";
 import moment from "moment";
 

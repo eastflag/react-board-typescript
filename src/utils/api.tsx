@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {store} from '../redux/store';
-import {jwtUtils} from "./jwtUtils";
+import {jwtUtils} from "./JwtUtils";
 
 const instance = axios.create({
   // baseURL: process.env.NODE_ENV === 'production' ? '' : 'https://api.eastflag.co.kr'
